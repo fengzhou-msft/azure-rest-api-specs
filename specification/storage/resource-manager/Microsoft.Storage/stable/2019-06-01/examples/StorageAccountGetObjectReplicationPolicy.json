@@ -20,7 +20,6 @@
           "destinationAccount": "destAccount1",
           "rules": [
             {
-              "ruleId": "13948c06-afea-49b3-a960-0d22481357b7",
               "sourceContainer": "sourceContainer1",
               "destinationContainer": "destContainer1",
               "filter": {
@@ -29,7 +28,6 @@
               }
             },
             {
-              "ruleId": "f56604f6-c6c3-485b-9dee-1e1e9e6d3193",
               "sourceContainer": "sourceContainer1",
               "destinationContainer": "destContainer1",
               "filter": {

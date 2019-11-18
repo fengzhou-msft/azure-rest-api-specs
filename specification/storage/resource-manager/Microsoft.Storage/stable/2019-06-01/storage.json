@@ -2951,12 +2951,17 @@
       },
       "required": [
         "sourceAccount",
-        "destinationAccount"
+        "destinationAccount",
+        "rules"
       ],
       "description": "The Storage Account ObjectReplicationPolicy properties."
     },
     "ObjectReplicationPolicyRule": {
       "properties": {
+        "ruleId": {
+          "type": "string",
+          "description": "A unique id for object replication policy rule."
+        },
         "sourceContainer": {
           "type": "string",
           "description": "Required. Source container name."

@@ -1006,8 +1006,17 @@
         "operationId": "ObjectReplicationPolicies_CreateOrUpdate",
         "description": "Create or update the object replication policy of the storage account.",
         "x-ms-examples": {
-          "StorageAccountSetObjectReplicationPolicies": {
-            "$ref": "./examples/StorageAccountSetObjectReplicationPolicy.json"
+          "StorageAccountCreateObjectReplicationPolicyOnDestination": {
+            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnDestination.json"
+          },
+          "StorageAccountCreateObjectReplicationPolicyOnSource": {
+            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnSource.json"
+          },
+          "StorageAccountUpdateObjectReplicationPolicyOnDestination": {
+            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnDestination.json"
+          },
+          "StorageAccountUpdateObjectReplicationPolicyOnSource": {
+            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnSource.json"
           }
         },
         "parameters": [
@@ -2951,13 +2960,16 @@
       },
       "required": [
         "sourceAccount",
-        "destinationAccount",
-        "rules"
+        "destinationAccount"
       ],
       "description": "The Storage Account ObjectReplicationPolicy properties."
     },
     "ObjectReplicationPolicyRule": {
       "properties": {
+        "ruleId": {
+          "type": "string",
+          "description": "Rule Id is auto-generated for each new rule on destination account. It is required for put policy on source account."
+        },
         "sourceContainer": {
           "type": "string",
           "description": "Required. Source container name."

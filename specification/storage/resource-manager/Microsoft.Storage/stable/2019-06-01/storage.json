@@ -1013,10 +1013,10 @@
             "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnSource.json"
           },
           "StorageAccountUpdateObjectReplicationPolicyOnDestination": {
-            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnDestination.json"
+            "$ref": "./examples/StorageAccountUpdateObjectReplicationPolicyOnDestination.json"
           },
           "StorageAccountUpdateObjectReplicationPolicyOnSource": {
-            "$ref": "./examples/StorageAccountCreateObjectReplicationPolicyOnSource.json"
+            "$ref": "./examples/StorageAccountUpdateObjectReplicationPolicyOnSource.json"
           }
         },
         "parameters": [

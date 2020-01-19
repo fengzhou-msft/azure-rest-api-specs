@@ -19,10 +19,10 @@ python:
 ``` yaml $(python) && $(python-mode) == 'update'
 python:
   no-namespace-folders: true
-  output-folder: $(python-sdks-folder)/azure-mgmt-blueprint/azure/mgmt/blueprint
+  output-folder: $(python-sdks-folder)/blueprint/azure-mgmt-blueprint/azure/mgmt/blueprint
 ```
 ``` yaml $(python) && $(python-mode) == 'create'
 python:
   basic-setup-py: true
-  output-folder: $(python-sdks-folder)/azure-mgmt-blueprint
+  output-folder: $(python-sdks-folder)/blueprint/azure-mgmt-blueprint
 ```

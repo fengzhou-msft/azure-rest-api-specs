@@ -8,5 +8,4 @@ cli:
   flatten-all: true
   cmd-override:
     "^.*assignment-operation.*$": "-"
-    "^blueprint version$": "* published"
 ```

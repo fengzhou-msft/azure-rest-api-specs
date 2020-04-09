@@ -316,6 +316,141 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/prepareEncryption": {
+      "patch": {
+        "tags": [
+          "CMKEncryption"
+        ],
+        "operationId": "CMKEncryption_Update",
+        "description": "Prepares the workspace for CMK encryption.",
+        "x-ms-examples": {
+          "Prepare workspace for CMK Encryption": {
+            "$ref": "./examples/PrepareEncryption.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/WorkspaceName"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prepared workspace for CMK Encryption.",
+            "schema": {
+              "$ref": "#/definitions/PrepareEncryptionResponse"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/enableEncryption": {
+      "put": {
+        "tags": [
+          "CMKEncryptionEnable"
+        ],
+        "operationId": "CMKEncryptionEnable_Create",
+        "description": "Enables CMK encryption on the workspace.",
+        "x-ms-examples": {
+          "Enable CMK Encryption on the workspace": {
+            "$ref": "./examples/EnableEncryption.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/WorkspaceName"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CMKEncryptionDefinition"
+            },
+            "description": "Parameters supplied to enable or update the CMK encryption on the workspace."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enabled CMK Encryption on workspace.",
+            "schema": {
+              "$ref": "#/definitions/Workspace"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/disableEncryption": {
+      "put": {
+        "tags": [
+          "CMKEncryptionDisable"
+        ],
+        "operationId": "CMKEncryptionDisable_Create",
+        "description": "Reverts encryption on the workspace from CMK Encryption to default Microsoft Managed Keys encryption.",
+        "x-ms-examples": {
+          "Reverts CMK Encryption on workspace": {
+            "$ref": "./examples/DisableEncryption.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/ResourceGroupName"
+          },
+          {
+            "$ref": "#/parameters/WorkspaceName"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reverted to default Microsoft Managed Keys encryption.",
+            "schema": {
+              "$ref": "#/definitions/Workspace"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/providers/Microsoft.Databricks/operations": {
       "get": {
         "tags": [
@@ -423,6 +558,10 @@
           "readOnly": true,
           "description": "The workspace URL which is of the format 'adb-{workspaceId}.{random}.azuredatabricks.net'",
           "type": "string"
+        },
+        "storageAccountIdentity": {
+          "description": "The details of Managed Identity of Storage Account",
+          "$ref": "#/definitions/PrepareEncryptionResponse"
         }
       },
       "required": [
@@ -521,6 +660,49 @@
         "name": "ProvisioningState",
         "modelAsString": true
       }
+    },
+    "PrepareEncryptionResponse": {
+      "description": "The MSI details for storage account.",
+      "properties": {
+        "principalId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The objectId of the Managed Identity that is linked to the Managed Storage account.",
+          "readOnly": true
+        },
+        "tenantId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The tenant Id where the Managed Identity is created.",
+          "readOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of Identity created. It can be either SystemAssigned or UserAssigned.",
+          "readOnly": true
+        }
+      }
+    },
+    "CMKEncryptionDefinition": {
+      "description": "Information about DBFS Root encryption.",
+      "properties": {
+        "keyVaultUri": {
+          "type": "string",
+          "description": "The base vault URL containing the key used for DBFS Root encryption."
+        },
+        "keyName": {
+          "type": "string",
+          "description": "The name of the key used for DBFS Root encryption."
+        },
+        "keyVersion": {
+          "type": "string",
+          "description": "The key version of the key used for DBFS Encryption."
+        }
+      },
+      "required": [
+        "keyVaultUri",
+        "keyName"
+      ]
     },
     "WorkspaceCustomParameterType": {
       "description": "Provisioning status of the workspace.",
@@ -633,6 +815,10 @@
         "vnetAddressPrefix": {
           "$ref": "#/definitions/WorkspaceCustomStringParameter",
           "description": "The first 2 octets of the virtual network /16 address range (e.g., '10.139' for the address range 10.139.0.0/16)."
+        },
+        "encryption": {
+          "$ref": "#/definitions/WorkspaceCustomObjectParameter",
+          "description": "Contains the encryption details for CMK enabled workspace."
         }
       },
       "description": "Custom Parameters used for Cluster Creation."

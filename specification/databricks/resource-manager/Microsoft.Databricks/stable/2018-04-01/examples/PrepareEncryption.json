@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "subscriptionId": "subid",
+    "resourceGroupName": "rg",
+    "workspaceName": "myWorkspace",
+    "api-version": "2018-04-01"
+  },
+  "responses": {
+    "200": {
+      "headers": {},
+      "body": {
+        "principalId": "55555555-5555-5555-5555-555555555555",
+        "tenantId": "66666666-6666-6666-6666-666666666666",
+        "type": "SystemAssigned"
+      }
+    }
+  }
+}

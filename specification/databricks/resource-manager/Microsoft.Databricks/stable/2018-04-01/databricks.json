@@ -135,13 +135,13 @@
           "Create or update workspace with custom parameters": {
             "$ref": "./examples/WorkspaceCreateWithParameters.json"
           },
-          "Create a workspace which is ready for CMK encryption": {
+          "Create a workspace which is ready for Customer-Managed Key (CMK) encryption": {
             "$ref": "./examples/PrepareEncryption.json"
           },
-          "Enable CMK encryption on a workspace which is prepared for encryption": {
+          "Enable Customer-Managed Key (CMK) encryption on a workspace which is prepared for encryption": {
             "$ref": "./examples/EnableEncryption.json"
           },
-          "Revert CMK encryption to Microsoft Managed Keys encryption on a workspace": {
+          "Revert Customer-Managed Key (CMK) encryption to Microsoft Managed Keys encryption on a workspace": {
             "$ref": "./examples/DisableEncryption.json"
           }
         },
@@ -536,7 +536,7 @@
       }
     },
     "PrepareEncryptionResponse": {
-      "description": "The MSI details for storage account.",
+      "description": "The Managed Identity details for storage account.",
       "properties": {
         "principalId": {
           "type": "string",
@@ -675,7 +675,7 @@
         },
         "encryption": {
           "$ref": "#/definitions/WorkspaceEncryptionParameter",
-          "description": "Contains the encryption details for CMK enabled workspace."
+          "description": "Contains the encryption details for Customer-Managed Key (CMK) enabled workspace."
         }
       },
       "description": "Custom Parameters used for Cluster Creation."
@@ -718,7 +718,8 @@
           "$ref": "#/definitions/Encryption",
           "description": "The value which should be used for this field."
         }
-      }
+      },
+      "description": "The object that contains details of encryption used on the workspace."
     },
     "Encryption": {
       "properties": {
@@ -750,7 +751,8 @@
           "description": "The Uri of KeyVault.",
           "x-ms-client-name": "KeyVaultUri"
         }
-      }
+      },
+      "description": "The object that contains details of encryption used on the workspace."
     },
     "WorkspaceProviderAuthorization": {
       "properties": {

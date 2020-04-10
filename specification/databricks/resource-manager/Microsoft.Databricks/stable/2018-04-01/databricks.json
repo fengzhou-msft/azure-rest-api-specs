@@ -674,7 +674,7 @@
           "description": "Prepare the workspace for encryption. Enables the Managed Identity for managed storage account."
         },
         "encryption": {
-          "$ref": "#/definitions/WorkspaceCustomObjectParameter",
+          "$ref": "#/definitions/WorkspaceEncryptionParameter",
           "description": "Contains the encryption details for CMK enabled workspace."
         }
       },
@@ -707,6 +707,50 @@
         }
       },
       "description": "Provides details of the entity that created/updated the workspace."
+    },
+    "WorkspaceEncryptionParameter": {
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/WorkspaceCustomParameterType",
+          "description": "The type of variable that this is"
+        },
+        "value": {
+          "$ref": "#/definitions/Encryption",
+          "description": "The value which should be used for this field."
+        }
+      }
+    },
+    "Encryption": {
+      "properties": {
+        "keySource": {
+          "type": "string",
+          "description": "The encryption keySource (provider). Possible values (case-insensitive):  Default, Microsoft.Keyvault",
+          "enum": [
+            "Default",
+            "Microsoft.Keyvault"
+          ],
+          "x-ms-enum": {
+            "name": "KeySource",
+            "modelAsString": true
+          },
+          "default": "Default"
+        },
+        "keyName": {
+          "type": "string",
+          "description": "The name of KeyVault key.",
+          "x-ms-client-name": "KeyName"
+        },
+        "keyVersion": {
+          "type": "string",
+          "description": "The version of KeyVault key.",
+          "x-ms-client-name": "KeyVersion"
+        },
+        "keyVaultUri": {
+          "type": "string",
+          "description": "The Uri of KeyVault.",
+          "x-ms-client-name": "KeyVaultUri"
+        }
+      }
     },
     "WorkspaceProviderAuthorization": {
       "properties": {

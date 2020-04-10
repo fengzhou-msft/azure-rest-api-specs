@@ -738,18 +738,15 @@
         },
         "keyName": {
           "type": "string",
-          "description": "The name of KeyVault key.",
-          "x-ms-client-name": "KeyName"
+          "description": "The name of KeyVault key."
         },
         "keyVersion": {
           "type": "string",
-          "description": "The version of KeyVault key.",
-          "x-ms-client-name": "KeyVersion"
+          "description": "The version of KeyVault key."
         },
         "keyVaultUri": {
           "type": "string",
-          "description": "The Uri of KeyVault.",
-          "x-ms-client-name": "KeyVaultUri"
+          "description": "The Uri of KeyVault."
         }
       },
       "description": "The object that contains details of encryption used on the workspace."

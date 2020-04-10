@@ -435,7 +435,7 @@
         },
         "storageAccountIdentity": {
           "description": "The details of Managed Identity of Storage Account",
-          "$ref": "#/definitions/PrepareEncryptionResponse"
+          "$ref": "#/definitions/ManagedIdentityConfiguration"
         }
       },
       "required": [
@@ -535,7 +535,7 @@
         "modelAsString": true
       }
     },
-    "PrepareEncryptionResponse": {
+    "ManagedIdentityConfiguration": {
       "description": "The Managed Identity details for storage account.",
       "properties": {
         "principalId": {

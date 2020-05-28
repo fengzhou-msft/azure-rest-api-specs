@@ -723,7 +723,7 @@
     },
     "Encryption": {
       "properties": {
-        "keySource": {
+        "keysource": {
           "type": "string",
           "description": "The encryption keySource (provider). Possible values (case-insensitive):  Default, Microsoft.Keyvault",
           "enum": [
@@ -736,15 +736,15 @@
           },
           "default": "Default"
         },
-        "keyName": {
+        "keyname": {
           "type": "string",
           "description": "The name of KeyVault key."
         },
-        "keyVersion": {
+        "keyversion": {
           "type": "string",
           "description": "The version of KeyVault key."
         },
-        "keyVaultUri": {
+        "keyvaulturi": {
           "type": "string",
           "description": "The Uri of KeyVault."
         }

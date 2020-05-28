@@ -736,7 +736,7 @@
           },
           "default": "Default"
         },
-        "keyname": {
+        "keyName": {
           "type": "string",
           "description": "The name of KeyVault key."
         },

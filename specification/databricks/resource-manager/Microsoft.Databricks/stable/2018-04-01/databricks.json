@@ -723,7 +723,7 @@
     },
     "Encryption": {
       "properties": {
-        "keysource": {
+        "keySource": {
           "type": "string",
           "description": "The encryption keySource (provider). Possible values (case-insensitive):  Default, Microsoft.Keyvault",
           "enum": [

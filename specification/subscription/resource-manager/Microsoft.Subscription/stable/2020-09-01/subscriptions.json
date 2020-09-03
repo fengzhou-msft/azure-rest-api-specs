@@ -21,7 +21,7 @@
         "tags": [
           "Subscription"
         ],
-        "operationId": "Subscription_Cancel",
+        "operationId": "Subscriptions_Cancel",
         "x-ms-examples": {
           "cancelSubscription": {
             "$ref": "./examples/cancelSubscription.json"
@@ -57,7 +57,7 @@
         "tags": [
           "Subscription"
         ],
-        "operationId": "Subscription_Rename",
+        "operationId": "Subscriptions_Rename",
         "x-ms-examples": {
           "renameSubscription": {
             "$ref": "./examples/renameSubscription.json"
@@ -96,7 +96,7 @@
         "tags": [
           "Subscription"
         ],
-        "operationId": "Subscription_Enable",
+        "operationId": "Subscriptions_Enable",
         "x-ms-examples": {
           "enableSubscription": {
             "$ref": "./examples/enableSubscription.json"

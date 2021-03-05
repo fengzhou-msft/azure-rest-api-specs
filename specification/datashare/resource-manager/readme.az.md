@@ -15,16 +15,16 @@ directive:
       group: datashare consumer-invitation
     set:
       group: datashare consumer invitation
-  # - where:
-  #     group: datashare consumer-invitation list-invitation
-  #   set:
-  #     group: datashare consumer invitation list
-  # - where:
-  #     group: datashare consumer-invitation reject-invitation
-  #   set:
-  #     group: datashare consumer invitation reject
   - where:
-      group: datashare data-set
+      command: datashare consumer invitation list-invitation
+    set:
+      command: datashare consumer invitation list
+  - where:
+      command: datashare consumer invitation reject-invitation
+    set:
+      command: datashare consumer invitation reject
+  - where:
+      group: ^datashare data-set$
     set:
       group: datashare dataset
   - where:
@@ -35,14 +35,26 @@ directive:
       group: datashare share-subscription
     set:
       group: datashare consumer share-subscription
-  # - where:
-  #     group: datashare share-subscription cancel-synchronization
-  #   set:
-  #     group: datashare consumer share-subscription synchronization cancel
-  # - where:
-  #     group: datashare consumer-source-data-set list
-  #   set:
-  #     group: datashare consumer share-subscription list-source-dataset
+  - where:
+      command: datashare consumer share-subscription cancel-synchronization
+    set:
+      command: datashare consumer share-subscription synchronization cancel
+  - where:
+      command: datashare consumer share-subscription list-synchronization
+    set:
+      command: datashare consumer share-subscription synchronization list
+  - where:
+      command: datashare consumer share-subscription list-synchronization-detail
+    set:
+      command: datashare consumer share-subscription synchronization list-detail
+  - where:
+      command: datashare consumer share-subscription synchronize
+    set:
+      command: datashare consumer share-subscription synchronization start
+  - where:
+      command: datashare consumer-source-data-set list
+    set:
+      command: datashare consumer share-subscription list-source-dataset
   - where:
       group: datashare trigger
     set:

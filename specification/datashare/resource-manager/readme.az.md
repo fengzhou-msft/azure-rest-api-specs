@@ -47,48 +47,6 @@ directive:
       group: datashare trigger
     set:
       group: datashare consumer trigger
-  
-directive:
-  - where:
-      group: ^datashare share$
-    set:
-      group: datashare
-  - where:
-      group: ^datashare data-set$
-    set:
-      group: datashare dataset
-  - where:
-      group: datashare trigger
-    set:
-      group: datashare consumer trigger
-  - where:
-      group: datashare share-subscription
-    set:
-      group: datashare consumer share-subscription
-  - where:
-      group: datashare data-set-mapping
-    set:
-      group: datashare consumer dataset-mapping
-  - where:
-      group: datashare consumer-invitation
-    set:
-      group: datashare consumer invitation
-  - where:
-      command: datashare consumer-source-data-set list
-    set:
-      command: datashare consumer share-susbcription list-source-dataset
-  - where:
-      command: datashare consumer share-subscription cancel-synchronization
-    set:
-      command: datashare consumer share-subscription synchronization cancel
-  - where:
-      command: ^datashare consumer share-subscription list-synchronization$
-    set:
-      command: datashare consumer share-subscription synchronization list
-  - where:
-      command: datashare consumer share-subscription list-synchronization-detail
-    set:
-      command: datashare consumer share-subscription synchronization list-detail
 
 #cli:
 #    cli-directive:

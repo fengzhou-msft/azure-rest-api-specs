@@ -61,7 +61,7 @@ cli:
             param: properties
         poly-resource: true
       - where:
-            group: ExposureControl|IntegrationRuntimeObjectMetadata|DataFlows|DataFlowDebugSession|ManagedVirtualNetworks|ManagedPrivateEndpoints
+            group: ExposureControl|IntegrationRuntimeObjectMetadata|DataFlows|DataFlowDebugSession|ManagedVirtualNetworks|ManagedPrivateEndpoints|privateEndpointConnections|privateEndPointConnections|PrivateEndpointConnection|privateLinkResources
         hidden: true
       - where:
             group: Factories
@@ -83,4 +83,14 @@ cli:
             op: CreateOrUpdate#Update
             param: pipeline
         cli-flatten: true
+      - where:
+            group: Factories
+            op: CreateOrUpdate#Create
+            param: keyName|vaultBaseUrl|keyVersion|identity|type|userAssignedIdentities|publicNetworkAccess
+        hidden: true
+      - where:
+            group: Factories
+            op: Update
+            param: type|userAssignedIdentities
+        hidden: true
 ```

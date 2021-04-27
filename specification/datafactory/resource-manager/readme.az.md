@@ -93,4 +93,13 @@ cli:
             op: Update
             param: type|userAssignedIdentities
         hidden: true
+      - where:
+            group: Pipelines
+            op: CreateOrUpdate#Update
+            param: name
+        name: folder_name
+      - where:
+            group: IntegrationRuntimes
+            param: managedVirtualNetwork
+        hidden: true
 ```

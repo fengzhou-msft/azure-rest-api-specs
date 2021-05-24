@@ -29,4 +29,27 @@ cli:
         op: Create
         param: provisioningState
       hidden: true
+    - where:
+        group: Organization
+        op: Create
+        param: offerDetail
+      cli-flatten: true
+    - where:
+        group: Organization
+        op: Create
+        param: userDetail
+      hidden: true
+    - where:
+        group: Organization
+        op: Create
+        param: status
+      hidden: true
+    - where:
+        group: Organization
+        op: Create
+        param: id
+      name: offer_id
+    - where:
+        group: Validations
+      hidden: true
 ```

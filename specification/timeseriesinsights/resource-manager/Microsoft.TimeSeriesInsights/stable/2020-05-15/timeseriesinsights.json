@@ -57,6 +57,12 @@
             "schema": {
               "$ref": "#/definitions/OperationListResult"
             }
+          },
+          "default": {
+            "description": "HTTP 404 (Not Found): The list of operations could not be found.",
+            "schema": {
+              "$ref": "#/definitions/CloudError"
+            }
           }
         },
         "x-ms-pageable": {
@@ -349,6 +355,9 @@
         "x-ms-examples": {
           "CreateEventHubEventSource": {
             "$ref": "./examples/EventSourcesCreateEventHub.json"
+          },
+          "EventSourcesCreateEventHubWithCustomEnquedTime": {
+            "$ref": "./examples/EventSourcesCreateEventHubWithCustomEnquedTime.json"
           }
         },
         "description": "Create or update an event source under the specified environment.",
@@ -1342,7 +1351,7 @@
             "Gen2"
           ],
           "x-ms-enum": {
-            "name": "Kind",
+            "name": "EnvironmentKind",
             "modelAsString": true
           }
         },
@@ -1400,7 +1409,20 @@
     },
     "EnvironmentUpdateParameters": {
       "type": "object",
+      "discriminator": "kind",
       "properties": {
+        "kind": {
+          "type": "string",
+          "description": "The kind of the environment.",
+          "enum": [
+            "Gen1",
+            "Gen2"
+          ],
+          "x-ms-enum": {
+            "name": "EnvironmentKind",
+            "modelAsString": true
+          }
+        },
         "tags": {
           "type": "object",
           "additionalProperties": {
@@ -1409,10 +1431,14 @@
           "description": "Key-value pairs of additional properties for the environment."
         }
       },
+      "required": [
+        "kind"
+      ],
       "description": "Parameters supplied to the Update Environment operation."
     },
     "Gen1EnvironmentUpdateParameters": {
       "type": "object",
+      "x-ms-discriminator-value": "Gen1",
       "properties": {
         "sku": {
           "$ref": "#/definitions/Sku",
@@ -1433,6 +1459,7 @@
     },
     "Gen2EnvironmentUpdateParameters": {
       "type": "object",
+      "x-ms-discriminator-value": "Gen2",
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
@@ -1612,9 +1639,6 @@
         },
         {
           "$ref": "#/definitions/EnvironmentResourceProperties"
-        },
-        {
-          "$ref": "#/definitions/ResourceProperties"
         }
       ],
       "required": [
@@ -1648,9 +1672,6 @@
       "allOf": [
         {
           "$ref": "#/definitions/EnvironmentResourceProperties"
-        },
-        {
-          "$ref": "#/definitions/ResourceProperties"
         }
       ],
       "description": "Properties of the Gen2 environment."
@@ -1827,6 +1848,29 @@
         }
       }
     },
+    "IngressStartAtProperties": {
+      "type": "object",
+      "description": "An object that contains the details about the starting point in time to ingest events.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of the ingressStartAt, It can be \"EarliestAvailable\", \"EventSourceCreationTime\", \"CustomEnqueuedTime\".",
+          "enum": [
+            "EarliestAvailable",
+            "EventSourceCreationTime",
+            "CustomEnqueuedTime"
+          ],
+          "x-ms-enum": {
+            "name": "IngressStartAtType",
+            "modelAsString": true
+          }
+        },
+        "time": {
+          "type": "string",
+          "description": "ISO8601 UTC datetime with seconds precision (milliseconds are optional), specifying the date and time that will be the starting point for Events to be consumed."
+        }
+      }
+    },
     "EventSourceCreateOrUpdateParameters": {
       "discriminator": "kind",
       "properties": {
@@ -1838,7 +1882,7 @@
             "Microsoft.IoTHub"
           ],
           "x-ms-enum": {
-            "name": "Kind",
+            "name": "EventSourceKind",
             "modelAsString": true
           }
         },
@@ -1894,8 +1938,21 @@
       "description": "Parameters supplied to the Create or Update Event Source operation for an IoTHub event source."
     },
     "EventSourceUpdateParameters": {
+      "discriminator": "kind",
       "type": "object",
       "properties": {
+        "kind": {
+          "type": "string",
+          "description": "The kind of the event source.",
+          "enum": [
+            "Microsoft.EventHub",
+            "Microsoft.IoTHub"
+          ],
+          "x-ms-enum": {
+            "name": "EventSourceKind",
+            "modelAsString": true
+          }
+        },
         "tags": {
           "type": "object",
           "additionalProperties": {
@@ -1904,6 +1961,9 @@
           "description": "Key-value pairs of additional properties for the event source."
         }
       },
+      "required": [
+        "kind"
+      ],
       "description": "Parameters supplied to the Update Event Source operation."
     },
     "EventHubEventSourceUpdateParameters": {
@@ -2016,6 +2076,11 @@
         "timestampPropertyName": {
           "type": "string",
           "description": "The event property that will be used as the event source's timestamp. If a value isn't specified for timestampPropertyName, or if null or empty-string is specified, the event creation time will be used."
+        },
+        "ingressStartAt": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/IngressStartAtProperties",
+          "description": "An object that contains the details about the starting point in time to ingest events."
         }
       },
       "allOf": [
